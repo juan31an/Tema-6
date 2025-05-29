@@ -1,0 +1,119 @@
+/* Variables de tema */
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --primary: #007bff;
+  --card-bg: #f8f9fa;
+}
+[data-theme="dark"] {
+  --bg: #121212;
+  --text: #e0e0e0;
+  --primary: #90caf9;
+  --card-bg: #1e1e1e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: sans-serif;
+  line-height: 1.4;
+}
+header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--card-bg);
+}
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+#filters, #pagination {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+#patient-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+.patient-card {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 4px;
+  position: relative;
+  outline: none;
+}
+.patient-card[aria-selected="true"] {
+  outline: 2px solid var(--primary);
+}
+.skeleton {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { background-color: rgba(0,0,0,0.05); }
+  50% { background-color: rgba(0,0,0,0.15); }
+}
+.skeleton-text {
+  width: 100%;
+  height: 1em;
+  margin-bottom: 0.5em;
+  background: rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+button {
+  cursor: pointer;
+  /* Let's add some basic padding and border to generic buttons if they don't have it from elsewhere */
+  padding: 0.5em 1em;
+  border: 1px solid var(--primary);
+  background-color: var(--bg);
+  color: var(--primary);
+  border-radius: 4px;
+}
+button:hover {
+  background-color: var(--primary);
+  color: var(--bg);
+}
+#toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+.toast {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+/* Styling for the Show Favorites Button */
+#show-favorites-btn {
+  /* Standard button styling will be inherited or can be made consistent here */
+  /* For example, ensure it has padding, border, etc. */
+  /* The generic button style added above might cover this */
+}
+
+#show-favorites-btn.active {
+  background-color: var(--primary);
+  color: white; /* Assuming primary is a light color on dark theme and dark on light theme */
+  border-color: var(--primary);
+}
+
+/* Ensure dark theme compatibility for active button if not covered by variables */
+[data-theme="dark"] #show-favorites-btn.active {
+  color: var(--bg); /* Text color for active button on dark theme */
+}
