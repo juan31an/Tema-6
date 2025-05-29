@@ -7,7 +7,16 @@ export const pacientesState = (() => {
 
   function load() {
     const raw = localStorage.getItem('pacientes');
-    pacientes = raw ? JSON.parse(raw) : [];
+    try {
+      pacientes = raw ? JSON.parse(raw) : [];
+      if (!Array.isArray(pacientes)) {
+          console.warn('Pacientes data in localStorage was not an array, resetting to empty array.');
+          pacientes = [];
+      }
+    } catch (e) {
+      console.error('Error parsing pacientes from localStorage:', e);
+      pacientes = []; // Initialize with empty array on error
+    }
   }
   function save() {
     localStorage.setItem('pacientes', JSON.stringify(pacientes));
